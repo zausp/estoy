@@ -101,22 +101,13 @@ const typingSpeedPara = 40;  // faster than title
 function typeText(el, text, speed, callback){
   let index = 0;
   function typeChar(){
-    if(index < text.length){
-      // create a span per character with fade effect
-      const span = document.createElement('span');
-      span.textContent = text[index];
-      span.classList.add('fade-char');
-      el.appendChild(span);
-
-      // trigger fade-in after appending
-      setTimeout(()=>span.classList.add('visible'), 10);
-
+    if (index < text.length){
+      el.textContent += text[index];
       index++;
       setTimeout(typeChar, speed);
     } else {
-      // hide cursor when done
       el.classList.add('done');
-      if(callback) callback();
+      if (callback) callback();
     }
   }
   typeChar();
